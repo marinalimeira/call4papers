@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :events, only: [:index, :show] do
+  resources :events, only: [:index, :show, :edit, :update, :destroy] do
     # collection do
     #   get 'my', to: 'events#my', as: :my
     # end
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  # get 'events', to: 'events#index', as: :events
+
+  #get 'events', to: 'events#index', as: :events
   get 'contact', to: 'home#contact', as: :contact
 end

@@ -29,9 +29,10 @@ class EventsController < ApplicationController
   end
 
   def update
+    authorize @event
     if @event.update(event_params)
-      redirect_to my_events_path,
-                  notice: 'Event was successfuly updated.'
+      redirect_to events_path,
+                notice: 'Event was successfuly updated.'
     else
       render :edit
     end
@@ -39,7 +40,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to my_events_path,
+    redirect_to events_path,
                 notice: 'Event was successfuly destroyed.'
   end
 
@@ -50,7 +51,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = current_user.events.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def event_params
@@ -62,5 +63,10 @@ class EventsController < ApplicationController
       :url,
       :logo
     )
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to events_path
   end
 end

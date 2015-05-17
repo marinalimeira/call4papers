@@ -9,12 +9,12 @@ RSpec.describe EventsController, type: :controller do
 
     before{
       sign_in(new_user)
-      patch :update, id: event.id, event: attributes_for(:event)
+      patch :update, id: event.id, event: attributes_for(:event)      
     }
 
-    it "can't be from another user" do
-      expect(response).to redirect_to(root_path) 
-      expect(flash[:alert]).to eq("Não é possível editar esse evento!")
+    it "can't be from another user" do 
+      expect(response).to redirect_to(events_path) 
+      expect(flash[:alert]).to eql("You are not authorized to perform this action.")
     end
   end
 end
