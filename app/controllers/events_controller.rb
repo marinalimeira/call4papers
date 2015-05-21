@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 
   def update
     authorize @event
-    if @event.update(event_params)
+    if @event.update(my_events_path)
       redirect_to events_path,
                 notice: 'Event was successfuly updated.'
     else
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path,
+    redirect_to my_events_path,
                 notice: 'Event was successfuly destroyed.'
   end
 
