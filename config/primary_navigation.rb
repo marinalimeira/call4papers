@@ -6,11 +6,11 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.dom_class = 'nav navbar-nav navbar-right'
     primary.item :home, '<span class="fui-home"> Home</span>', root_path
     primary.item :events, '<span class="fui-calendar"> Eventos</span>', events_path # , if: proc { current_user.nil? }
-    # primary.item :events, '<span class="fui-calendar"> Eventos</span>', '#', unless: proc { current_user.nil? } do |events|
-    #   events.item :all, 'Todos os eventos', events_path
-    #   events.item :new, 'Novo Evento', new_event_path
-    #   events.item :my_events, 'Meus Eventos', my_events_path
-    # end
+    primary.item :events, '<span class="fui-calendar"> Eventos</span>', '#', unless: proc { current_user.nil? } do |events|
+      events.item :all, 'Todos os eventos', events_path
+      events.item :new, 'Novo Evento', new_event_path
+      events.item :my_events, 'Meus Eventos', my_events_path
+    end
     primary.item :login, '<span class="fui-lock"> Login</span>', new_user_session_path, if: proc { current_user.nil? }
     primary.item :login, '<span class="fui-user"> Cadastre-se</span>', new_registration_path(User.new), if: proc { current_user.nil? }
     unless current_user.nil?
