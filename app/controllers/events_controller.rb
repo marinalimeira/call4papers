@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 
   def update
     authorize @event
-    if @event.update(my_events_path)
+    if @event.update(event_params)
       redirect_to events_path,
                 notice: 'Event was successfuly updated.'
     else
